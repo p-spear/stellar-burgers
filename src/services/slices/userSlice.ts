@@ -50,24 +50,10 @@ export const resetPassword = createAsyncThunk(
   async (data: { password: string; token: string }) => await resetPasswordApi(data)
 );
 
-/* export const getUser = createAsyncThunk(
-  'user/getUser',
-  async () => await getUserApi()
-); */
-
 export const updateUser = createAsyncThunk(
   'user/updateUser',
   async (user: Partial<TRegisterData>) => await updateUserApi(user)
 );
-
-/* export const logout = createAsyncThunk(
-  'user/logout',
-  async () => {
-    const response = await logoutApi()
-    deleteCookie('accessToken');
-    localStorage.removeItem('refreshToken')
-  }
-); */
 
 export const logout = createAsyncThunk(
   'user/logoutUser',
@@ -124,15 +110,12 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
-        //state.isLoading = true;
         state.error = null;
       })
       .addCase(registerUser.rejected, (state, action) => {
-        //state.isLoading = false;
         state.error = action.error.message ?? null;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
-        //state.isLoading = false;
         state.userData = action.payload;
         state.isAuthChecked = true;
       })
@@ -149,22 +132,6 @@ export const userSlice = createSlice({
         state.userData = action.payload;
         state.isAuthChecked = true;
       })
-      /* .addCase(logout.pending, (state) => {
-        //state.isLoading = true;
-        //state.error = null;
-      })
-      .addCase(logout.rejected, (state, action) => {
-        //state.isLoading = false;
-        //state.isAuthChecked = true;
-      }) */
-      /* .addCase(logout.fulfilled, (state, action) => {
-        //state.isLoading = false;
-        state.userData = {
-          name: '',
-          email: ''
-        };
-        state.isAuthChecked = false;
-      }) */
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true;
       })

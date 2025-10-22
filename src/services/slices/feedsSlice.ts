@@ -30,9 +30,7 @@ export const feedsSlice = createSlice({
   selectors: {
     selectFeedOrders: (state) => state.feedsData.orders,
     loadingFeeds: (state) => state.isLoading,
-    selectFeedsData: (state) => state.feedsData,
-    //selectTotalOrders: (state) => state.feedsData.total,
-    //selectTodayOrders: (state) => state.feedsData.totalToday
+    selectFeedsData: (state) => state.feedsData
   },
   extraReducers: (builder) => {
     builder

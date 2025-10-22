@@ -50,7 +50,7 @@ export const Profile: FC = () => {
     }));
   };
 
-  if(isloading) {
+  if (isloading) {
     return <Preloader />;
   }
 

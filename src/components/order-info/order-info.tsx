@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo } from 'react';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
-import { TIngredient} from '@utils-types';
+import { TIngredient } from '@utils-types';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from '../../services/store';
 import { selectAllIngredients, selectOrderModalData } from '@selectors';
@@ -12,11 +12,10 @@ export const OrderInfo: FC = () => {
   const { number } = useParams();
   const orderData = useSelector(selectOrderModalData);
   const ingredients: TIngredient[] = useSelector(selectAllIngredients);
-  
+
   useEffect(() => {
     dispatch(getOrder(parseInt(number!)));
-    
-  },[])
+  }, []);
   /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {
     if (!orderData || !ingredients.length) return null;

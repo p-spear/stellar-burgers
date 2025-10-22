@@ -21,14 +21,16 @@ export const Register: FC = () => {
       return;
     }
 
-    dispatch(registerUser({
-      name: userName,
-      email: email,
-      password: password
-    }));
+    dispatch(
+      registerUser({
+        name: userName,
+        email: email,
+        password: password
+      })
+    );
   };
 
-  if(isloading) {
+  if (isloading) {
     return <Preloader />;
   }
 

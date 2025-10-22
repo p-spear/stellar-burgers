@@ -5,25 +5,31 @@ import { useSelector, useDispatch } from '../../services/store';
 import {
   loadingOrders,
   selectOrderModalData,
-  selectBurgerIngredients
+  selectBurgerIngredients,
+  selectUser
 } from '@selectors';
 import {
   createOrder,
   clearOrderModalData
 } from '../../services/slices/ordersSlice';
 import { clearConstructor } from '../../services/slices/constructorSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const BurgerConstructor: FC = () => {
   const dispatch = useDispatch();
-  /** TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
-  //const constructorItems = useSelector((state) => state.burgerConstructor);
+  const navigate = useNavigate();
+
   const constructorItems = useSelector(selectBurgerIngredients);
   const orderRequest = useSelector(loadingOrders);
-  //const { orderRequest, orderModalData } = useSelector()
+  const user = useSelector(selectUser);
   const orderModalData = useSelector(selectOrderModalData);
 
   const onOrderClick = () => {
     if (!constructorItems.bun || orderRequest) return;
+
+    if (!user.name || !user.email) {
+      return navigate('/login');
+    }
 
     const orderData = [
       constructorItems.bun._id,
@@ -46,8 +52,6 @@ export const BurgerConstructor: FC = () => {
       ),
     [constructorItems]
   );
-
-  //return null;
 
   return (
     <BurgerConstructorUI

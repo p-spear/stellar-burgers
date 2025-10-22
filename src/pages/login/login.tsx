@@ -20,13 +20,15 @@ export const Login: FC = () => {
       return;
     }
 
-    dispatch(loginUser({
-      email: email,
-      password: password
-    }));
+    dispatch(
+      loginUser({
+        email: email,
+        password: password
+      })
+    );
   };
-  
-  if(isloading) {
+
+  if (isloading) {
     return <Preloader />;
   }
 

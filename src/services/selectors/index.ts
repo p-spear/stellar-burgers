@@ -7,7 +7,13 @@ import { userSlice } from '../slices/userSlice';
 export const { selectAllIngredients, loadingIngredients } =
   ingredientsSlice.selectors;
 export const { selectBurgerIngredients } = constructorSlice.selectors;
-export const { selectOrderModalData, loadingOrders, selectUserOrders } = ordersSlice.selectors;
+export const { selectOrderModalData, loadingOrders, selectUserOrders } =
+  ordersSlice.selectors;
 export const { selectFeedsData, selectFeedOrders, loadingFeeds } =
   feedsSlice.selectors;
-export const { selectUser, selectIsAuthChecked, selectUserDataError, selectLoading } = userSlice.selectors;
+export const {
+  selectUser,
+  selectIsAuthChecked,
+  selectUserDataError,
+  selectLoading
+} = userSlice.selectors;

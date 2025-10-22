@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from '../../services/store';
 import { getIngredients } from '../../services/slices/ingredientsSlice';
 import { checkUserAuth } from '../../services/slices/userSlice';
 import { selectFeedOrders } from '@selectors';
-//import { getCookie } from '../../utils/cookie';
+import { clearOrderModalData } from '../../services/slices/ordersSlice';
 
 const App = () => {
   const navigate = useNavigate();
@@ -33,19 +33,20 @@ const App = () => {
   const dispatch = useDispatch();
   const backgroundLocation = location.state?.background;
   const orders = useSelector(selectFeedOrders);
-    
+
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(checkUserAuth());
   }, []);
 
   const handleModalClose = () => {
+    dispatch(clearOrderModalData());
     navigate(-1);
   };
 
   const getOrderNumber = (path: string) => {
     const number = path.split('/').pop();
-    const order = orders.find(order => order.number === parseInt(number!));
+    const order = orders.find((order) => order.number === parseInt(number!));
     return order ? `#${order.number}` : '';
   };
 
@@ -121,7 +122,10 @@ const App = () => {
           <Route
             path='/feed/:number'
             element={
-              <Modal title={`${getOrderNumber(location.pathname)}`} onClose={handleModalClose}>
+              <Modal
+                title={`${getOrderNumber(location.pathname)}`}
+                onClose={handleModalClose}
+              >
                 <OrderInfo />
               </Modal>
             }
@@ -137,7 +141,10 @@ const App = () => {
           <Route
             path='/profile/orders/:number'
             element={
-              <Modal title={`${getOrderNumber(location.pathname)}`} onClose={handleModalClose}>
+              <Modal
+                title={`${getOrderNumber(location.pathname)}`}
+                onClose={handleModalClose}
+              >
                 <OrderInfo />
               </Modal>
             }

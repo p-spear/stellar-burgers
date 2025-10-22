@@ -1,5 +1,4 @@
 import {
-  createAsyncThunk,
   createSlice,
   nanoid,
   PayloadAction
@@ -25,11 +24,7 @@ export const constructorSlice = createSlice({
     },
     addIngredient: {
       reducer: (state, action: PayloadAction<TConstructorIngredient>) => {
-        /* if(action.payload.type === 'bun') {
-                state.bun = action.payload;
-          } else { */
         state.ingredients.push({ ...action.payload, id: nanoid() });
-        //}
       },
       prepare: (ingredient: TIngredient) => {
         const id = nanoid();

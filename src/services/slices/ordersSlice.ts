@@ -3,7 +3,6 @@ import { TOrder } from '@utils-types';
 import { orderBurgerApi, getOrderByNumberApi, getOrdersApi } from '@api';
 
 interface IOrdersState {
-  //allOrders: TOrder[];
   userOrders: TOrder[];
   orderModalData: TOrder | null;
   isLoading: boolean;
@@ -11,7 +10,6 @@ interface IOrdersState {
 }
 
 const initialState: IOrdersState = {
-  //allOrders: [],
   userOrders: [],
   orderModalData: null,
   isLoading: false,
@@ -44,7 +42,6 @@ export const ordersSlice = createSlice({
   selectors: {
     selectOrderModalData: (state) => state.orderModalData,
     loadingOrders: (state) => state.isLoading,
-    //selectAllOrders: (state) => state.allOrders,
     selectUserOrders: (state) => state.userOrders
   },
   extraReducers: (builder) => {

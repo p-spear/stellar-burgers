@@ -8,7 +8,6 @@ import { getFeeds } from '../../services/slices/feedsSlice';
 
 export const Feed: FC = () => {
   const dispatch = useDispatch();
-  /** TODO: взять переменную из стора */
   const orders: TOrder[] = useSelector(selectFeedOrders);
   const isLoading: boolean = useSelector(loadingFeeds);
 
@@ -21,9 +20,12 @@ export const Feed: FC = () => {
       {isLoading ? (
         <Preloader />
       ) : (
-        <FeedUI orders={orders} handleGetFeeds={() => {
-          dispatch(getFeeds())
-        }} />
+        <FeedUI
+          orders={orders}
+          handleGetFeeds={() => {
+            dispatch(getFeeds());
+          }}
+        />
       )}
     </>
   );
