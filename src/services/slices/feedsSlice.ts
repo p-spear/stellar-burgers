@@ -8,7 +8,7 @@ interface IFeedsState {
   error: string | null;
 }
 
-const initialState: IFeedsState = {
+export const initialState: IFeedsState = {
   feedsData: {
     orders: [],
     total: 0,
